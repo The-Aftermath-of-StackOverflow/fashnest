@@ -1,8 +1,20 @@
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession, signIn, signOut } from 'next-auth/react'
+import axios from 'axios'
 
 export default function Component() {
   const { data: session } = useSession()
-  console.log(session)
+  const userSignIn = async () => {
+    // console.log("afgrgewg")
+    await signIn()
+    const response = await axios.get('http://localhost:3000/api/auth', {
+      method: 'GET',
+      headers: {
+        email: session.user.email,
+      },
+    })
+    console.log(response)
+  }
+
   if (session) {
     return (
       <>
@@ -14,7 +26,7 @@ export default function Component() {
   return (
     <>
       Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+      <button onClick={async () => await userSignIn()}>Sign in</button>
     </>
   )
 }
