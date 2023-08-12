@@ -3,18 +3,18 @@ import axios from 'axios'
 import Image from 'next/image'
 
 export default function SignIn() {
-    const { data: session } = useSession()
-    const userSignIn = async () => {
-        // console.log("afgrgewg")
-        await signIn()
-        const response = await axios.get('http://localhost:3000/api/auth', {
-        method: 'GET',
-        headers: {
-            email: session.user.email,
-        },
-        })
-        console.log(response)
-    }
+  const { data: session } = useSession()
+  const userSignIn = async () => {
+    // console.log("afgrgewg")
+    await signIn()
+    const response = await axios.get('http://localhost:3000/api/auth', {
+      method: 'GET',
+      headers: {
+        email: session.user.email,
+      },
+    })
+    console.log(response)
+  }
 
   return (
     <div className="relative">
@@ -30,7 +30,8 @@ export default function SignIn() {
               <div className="mt-16 grid space-y-4">
                 <button
                   className="group h-12 px-6 border-2 w-fit border-gray-300 rounded-full transition duration-300 
- hover:border-blue-400 focus:bg-secondary active:bg-secondary" onClick={() => signIn()}
+ hover:border-blue-400 focus:bg-secondary active:bg-secondary"
+                  onClick={() => signIn()}
                 >
                   <div className="flex items-center space-x-4 justify-center">
                     <img

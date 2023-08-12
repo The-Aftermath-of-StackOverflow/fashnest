@@ -22,11 +22,11 @@ module.exports = {
         'orange-dark': '#E8630A',
         'yellow-bright': '#FCD900',
         light: '#A5D7E8',
-        'pale-blue': '#16BAC5'
+        'pale-blue': '#16BAC5',
       },
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
-        'Prism': ['Tilt Prism']
+        poppins: ['Poppins', 'sans-serif'],
+        Prism: ['Tilt Prism'],
       },
     },
   },

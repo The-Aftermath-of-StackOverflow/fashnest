@@ -12,11 +12,11 @@ export default function Home() {
       className={`flex flex-col max-w-screen-xl m-auto h-screen p-4 items-center ${inter.className}`}
     >
       <Navbar />
-      <div className='flex gap-4 my-4 justify-between'>
-          <SignIn />
-          <div className='w-3/4 grow'>
-            <Image src={fashionImg} className='w-full' />
-          </div>
+      <div className="flex gap-4 my-4 justify-between">
+        <SignIn />
+        <div className="w-3/4 grow">
+          <Image src={fashionImg} className="w-full" />
+        </div>
       </div>
     </main>
   )
