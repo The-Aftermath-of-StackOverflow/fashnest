@@ -1,20 +1,7 @@
-import { useSession, signIn, signOut } from 'next-auth/react'
-import axios from 'axios'
+import { useSession, signIn } from 'next-auth/react'
 import Image from 'next/image'
 
 export default function SignIn() {
-  const { data: session } = useSession()
-  const userSignIn = async () => {
-    // console.log("afgrgewg")
-    await signIn()
-    const response = await axios.get('http://localhost:3000/api/auth', {
-      method: 'GET',
-      headers: {
-        email: session.user.email,
-      },
-    })
-    console.log(response)
-  }
 
   return (
     <div className="relative">

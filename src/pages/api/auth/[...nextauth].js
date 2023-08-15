@@ -24,30 +24,10 @@ export const authOptions = {
 
       return session
     },
-    signin: async ({ profile, account, metadata }) => {
-      const client = await clientPromise
-      const db = client.db('fashnet-users')
-      console.log('asvffsgg')
-
-      const getUser = await db
-        .collection('users')
-        .find({
-          email: account.user.email,
-        })
-        .toArray()
-      if (!getUser) {
-        let userObject = {
-          _id: account.user.email,
-          name: account.user.name,
-          email: account.user.email,
-          pic: account.user.image_url,
-          fashion_history: [],
-        }
-        let addUser = await db.collection('users').insertOne(userObject)
-        console.log(addUser)
-      }
-      return false
-    },
+    async redirect({ url, baseUrl }) {
+      // console.log(url)
+      return process.env.REACT_URL || 'http://localhost:3000' + '/dashboard'
+    }
   },
 }
 
