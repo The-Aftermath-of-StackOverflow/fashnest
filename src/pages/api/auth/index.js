@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   const db = client.db('fashnet-users')
   switch (req.method) {
     case 'POST':
-      let bodyObject = JSON.parse(req.body)
+      let bodyObject = req.body
       let userObject = {
         _id: bodyObject.email,
         name: bodyObject.name,
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         fashion_history: [],
       }
       let addUser = await db.collection('users').insertOne(userObject)
-      res.json(addUser.ops[0])
+      res.json({user: addUser})
       break
     case 'GET':
       // console.log(typeof req.headers)
@@ -26,7 +26,6 @@ export default async function handler(req, res) {
           email: email,
         })
         .toArray()
-      console.log(getUser)
       res.json({ status: 200, data: getUser })
       // res.json({message: "Done"})
       break

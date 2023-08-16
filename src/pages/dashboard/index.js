@@ -1,28 +1,32 @@
 import { useSession, getSession } from "next-auth/react"
+import { sign } from "next-auth/jwt"
 import { getUser } from "@/lib/user"
 import { useRouter } from 'next/router'
 import {useState, useEffect} from 'react'
-import Navbar from "@/components/Navbar"
 import Layout from "@/components/Layout"
+import ChatShell from "@/components/ChatShell/ChatShell"
+
+const secret = process.env.NEXTAUTH_SECRET
 
 export default function Dashboard() {
   const {data: session} = useSession()
-  const [validSession, setValidSession] = useState(true);
   const [user, setUser] = useState()
 
   const router = useRouter()
-  // console.log(session)
+ 
+  const GetUser = async () => {
+    const user = await getUser(session)
+    setUser(user)
+  }
 
   useEffect(() => {
-    if(!session) router.push('/')
-    // const user = getUser(session);
-    // setUser(user)
+    GetUser();
+    // GetToken();
   }, [])
   
     return (
     <Layout>
-        
-        
+      <ChatShell />
     </Layout>
   )
 }

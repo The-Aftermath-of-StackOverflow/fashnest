@@ -1,9 +1,10 @@
-import React from 'react'
+import attachmentLogo from '@/assets/attachment-logo.png'
+import Image from 'next/image'
 
 export default function ChatForm() {
   return (
     <div id="chat-form">
-        <img src={require("../../images/icons/attachment-logo.svg")} alt="Add Attachment" />
+        <Image src={attachmentLogo} alt="Add Attachment" />
         <input type="text" placeholder="type a message" />
     </div>
   )

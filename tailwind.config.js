@@ -28,6 +28,9 @@ module.exports = {
         poppins: ['Poppins', 'sans-serif'],
         Prism: ['Tilt Prism'],
       },
+      height: {
+        90: '90vh'
+      }
     },
   },
   plugins: [
