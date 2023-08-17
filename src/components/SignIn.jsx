@@ -2,7 +2,6 @@ import { useSession, signIn } from 'next-auth/react'
 import Image from 'next/image'
 
 export default function SignIn() {
-
   return (
     <div className="relative">
       <div className="relative container m-auto text-gray-500">

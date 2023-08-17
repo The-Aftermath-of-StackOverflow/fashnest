@@ -5,7 +5,6 @@ import Layout from '@/components/Layout'
 import { getSession } from 'next-auth/react'
 
 export default function Home() {
-
   return (
     <Layout>
       <div className="flex gap-4 my-4 justify-between">
@@ -31,6 +30,6 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: { session }
+    props: { session },
   }
 }

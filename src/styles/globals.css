@@ -42,15 +42,14 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: #A5D7E8;
+  background-color: #a5d7e8;
   border-radius: 10px;
   overflow: hidden;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #0B2447;
+  background-color: #0b2447;
   border-radius: 10px;
 }

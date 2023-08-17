@@ -14,14 +14,14 @@ export const authOptions = {
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
     maxAge: 24 * 60 * 60,
-    updateAge: 60 * 60
+    updateAge: 60 * 60,
   },
   callbacks: {
     async jwt({ token, account }) {
       // Persist the OAuth access_token to the token right after signin
-      
+
       if (account) {
         token.accessToken = account.access_token
       }
@@ -29,18 +29,23 @@ export const authOptions = {
     },
     async session({ session, token }) {
       session.accessToken = token.accessToken
-      session.sessionId = randomUUID?.() ?? randomBytes(32).toString("hex");
+      session.sessionId = randomUUID?.() ?? randomBytes(32).toString('hex')
 
-      jwt.sign(session.user, secret, {
-        expiresIn: 31556926, // 1 year in seconds
-      }, (err, token) => {
-        session.jwtToken = token
-      })
+      jwt.sign(
+        session.user,
+        secret,
+        {
+          expiresIn: 31556926, // 1 year in seconds
+        },
+        (err, token) => {
+          session.jwtToken = token
+        }
+      )
       return session
     },
     async redirect({ url, baseUrl }) {
       return url
-    }
+    },
   },
 }
 

@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         fashion_history: [],
       }
       let addUser = await db.collection('users').insertOne(userObject)
-      res.json({user: addUser})
+      res.json({ user: addUser })
       break
     case 'GET':
       const { email } = req.headers
