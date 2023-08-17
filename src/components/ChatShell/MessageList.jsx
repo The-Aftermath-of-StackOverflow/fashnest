@@ -1,88 +1,59 @@
-import attachmentLogo from '@/assets/attachment-logo.png'
-import Image from 'next/image'
+import Loader from '../Loader';
+import {useState} from 'react'
 
 export default function MessageList() {
+    const [loader, setLoader] = useState(false)
   return (
-    <div id="chat-message-list">
-    <div className="message-row you-message">
-        <div className="message-content">
-            <div className="message-text">Ok then</div>
-            <div className="message-time">Apr 16</div>
+    <div className='flex flex-col-reverse overflow-auto max-h-77 px-5 scroll-smooth'>
+    <Loader />
+    <div className="flex mb-5 justify-end">
+        <div className="flex flex-col text-right">
+            <div className="text-xl max-w-4xl p-2 px-4 bg-light text-primary rounded">Ok then</div>
+            <div className="text-sm">Apr 16</div>
         </div>
     </div>
-    <div className="message-row other-message">
-        <div className="message-content">
-            {/* <img src={attachmentLogo} alt="Daryl Duckmanton" /> */}
-            <div className="message-text">
+    <div className="flex mb-4">
+        <div className="flex flex-col">
+            <div className="max-w-4xl text-xl bg-pale-blue rounded p-2 px-4 text-black">
                 Yeah I think it's best we do that. Otherwise things won't work well at all. 
                 I'm adding more text here to test the sizing of the speech bubble and the 
                 wrapping of it too.
             </div>
-            <div className="message-time">Apr 16</div>
+            <div className="text-sm">Apr 16</div>
         </div>
     </div>
-    <div className="message-row you-message">
-        <div className="message-content">
-            <div className="message-text">
-                Maybe we can use Jim's studio.
+    <div className="flex mb-5 justify-end">
+        <div className="flex flex-col text-right">
+            <div className="text-xl max-w-4xl p-2 px-4 bg-light text-primary rounded">Ok then</div>
+            <div className="text-sm">Apr 16</div>
+        </div>
+    </div>
+    <div className="flex mb-4">
+        <div className="flex flex-col">
+            <div className="max-w-4xl text-xl bg-pale-blue rounded p-2 px-4 text-black">
+                Yeah I think it's best we do that. Otherwise things won't work well at all. 
+                I'm adding more text here to test the sizing of the speech bubble and the 
+                wrapping of it too.
             </div>
-            <div className="message-time">Apr 15</div>
+            <div className="text-sm">Apr 16</div>
+        </div>
+    </div><div className="flex mb-5 justify-end">
+        <div className="flex flex-col text-right">
+            <div className="text-xl max-w-4xl p-2 px-4 bg-light text-primary rounded">Ok then</div>
+            <div className="text-sm">Apr 16</div>
         </div>
     </div>
-    <div className="message-row other-message">
-        <div className="message-content">
-            {/* <img src={attachmentLogo} alt="Daryl Duckmanton" /> */}
-            <div className="message-text">
-                All I know is where I live it's too hard
-                to record because of all the street noise.
+    <div className="flex mb-4">
+        <div className="flex flex-col">
+            <div className="max-w-4xl text-xl bg-pale-blue rounded p-2 px-4 text-black">
+                Yeah I think it's best we do that. Otherwise things won't work well at all. 
+                I'm adding more text here to test the sizing of the speech bubble and the 
+                wrapping of it too.
             </div>
-            <div className="message-time">Apr 16</div>
+            <div className="text-sm">Apr 16</div>
         </div>
     </div>
-    <div className="message-row you-message">
-        <div className="message-content">
-            <div className="message-text">
-                Well we need to work out sometime soon where
-                we really want to record our video course.
-            </div>
-            <div className="message-time">Apr 15</div>
-        </div>
-    </div>
-    <div className="message-row other-message">
-        <div className="message-content">
-            {/* <img src={attachmentLogo} alt="Daryl Duckmanton" /> */}
-            <div className="message-text">
-                I'm just in the process of finishing off the
-                last pieces of material for the course.
-            </div>
-            <div className="message-time">Apr 14</div>
-        </div>
-    </div>
-    <div className="message-row you-message">
-        <div className="message-content">
-            <div className="message-text">
-                How's it going?
-            </div>
-            <div className="message-time">Apr 13</div>
-        </div>
-    </div>
-    <div className="message-row other-message">
-        <div className="message-content">
-            <Image src={attachmentLogo} alt="Daryl Duckmanton" />
-            <div className="message-text">
-                Hey mate what's up?
-            </div>
-            <div className="message-time">Apr 13</div>
-        </div>
-    </div>
-    <div className="message-row you-message">
-        <div className="message-content">
-            <div className="message-text">
-                Hey Daryl?
-            </div>
-            <div className="message-time">Apr 13</div>
-        </div>
-    </div>
+
 </div>
   )
 }

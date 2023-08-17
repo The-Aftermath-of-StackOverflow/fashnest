@@ -2,7 +2,6 @@ import clientPromise from '../../../lib/mongodb'
 
 export default async function handler(req, res) {
   const client = await clientPromise
-  // console.log(client)
   const db = client.db('fashnet-users')
   switch (req.method) {
     case 'POST':
@@ -18,7 +17,6 @@ export default async function handler(req, res) {
       res.json({user: addUser})
       break
     case 'GET':
-      // console.log(typeof req.headers)
       const { email } = req.headers
       const getUser = await db
         .collection('users')

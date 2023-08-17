@@ -6,7 +6,7 @@ module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
@@ -28,14 +28,25 @@ module.exports = {
         poppins: ['Poppins', 'sans-serif'],
         Prism: ['Tilt Prism'],
       },
-      height: {
-        90: '90vh'
+      maxHeight: {
+        '77': '77vh'
+      },
+      animation: {
+        loader: 'loader 0.6s infinite alternate'
+      },
+      keyframes: {
+        loader: {
+          to: {
+            opacity: 0.1,
+            transform: 'translate3d(0, -1rem, 0)'
+          }
+        }
       }
     },
   },
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/line-clamp')
   ],
 }

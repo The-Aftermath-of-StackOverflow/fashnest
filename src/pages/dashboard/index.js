@@ -1,5 +1,4 @@
 import { useSession, getSession } from "next-auth/react"
-import { sign } from "next-auth/jwt"
 import { getUser } from "@/lib/user"
 import { useRouter } from 'next/router'
 import {useState, useEffect} from 'react'
@@ -33,7 +32,6 @@ export default function Dashboard() {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
-
   if (!session) {
     return {
       redirect: {
