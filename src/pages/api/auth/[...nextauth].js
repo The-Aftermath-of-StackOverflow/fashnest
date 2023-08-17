@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
+import Credentials from 'next-auth/providers/credentials'
 import { randomBytes, randomUUID } from 'crypto'
 import jwt from 'jsonwebtoken'
 
@@ -11,6 +12,32 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    Credentials({
+      // The name to display on the sign-in form (e.g. 'Sign in with...')
+      name: 'Email',
+      type: 'credentials',
+      credentials: {
+        email: { label: 'Email', type: 'text' },
+        password: { label: 'Password', type: 'password' },
+      },
+      async authorize(credentials, req) {
+        // Implement your own logic to validate credentials
+        const user = {
+          id: 1,
+          email: credentials.email,
+          name: 'admin',
+        }
+        // console.log(user)
+        if (
+          credentials.email === process.env.ADMIN_EMAIL &&
+          credentials.password === process.env.ADMIN_PASSWORD
+        ) {
+          return Promise.resolve(user)
+        } else {
+          throw new Error('invlid credentials')
+        }
+      },
     }),
   ],
   session: {

@@ -1,12 +1,12 @@
 import { useSession, signIn } from 'next-auth/react'
-import Image from 'next/image'
+import Link from 'next/link'
 
 export default function SignIn() {
   return (
     <div className="relative">
       <div className="relative container m-auto text-gray-500">
         <div className="m-auto">
-          <div className="rounded-xl bg-transparent shadow-xl">
+          <div className="rounded-xl bg-transparent">
             <div className="py-6 sm:py-16">
               <div className="space-y-4">
                 <h2 className="mb-8 text-5xl text-white font-bold leading-relaxed font-Prism">
@@ -17,7 +17,7 @@ export default function SignIn() {
                 <button
                   className="group h-12 px-6 border-2 w-fit border-gray-300 rounded-full transition duration-300 
  hover:border-blue-400 focus:bg-secondary active:bg-secondary"
-                  onClick={() => signIn()}
+                  onClick={() => signIn('google')}
                 >
                   <div className="flex items-center space-x-4 justify-center">
                     <img
@@ -31,6 +31,15 @@ export default function SignIn() {
                   </div>
                 </button>
               </div>
+              <p class="mt-6 text-white">
+                Are you Admin?{' '}
+                <a
+                  href="/admin"
+                  class="text-light transition duration-150 ease-in-out hover:text-primary-600 focus:text-secondary active:text-primary"
+                >
+                  Login as Admin
+                </a>
+              </p>
 
               <div className="mt-32 space-y-4 text-gray-600 text-center sm:-mb-8">
                 <p className="text-xs">

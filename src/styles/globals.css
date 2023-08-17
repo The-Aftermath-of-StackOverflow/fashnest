@@ -18,6 +18,33 @@
   @apply w-2 h-2 my-4 mx-1 bg-pale-blue rounded-full;
 }
 
+.will-change-transform {
+  will-change: transform;
+}
+
+.cursor::after {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background-color: #fff;
+  animation: cursor 0.6s linear infinite alternate;
+  will-change: opacity;
+}
+
+@keyframes cursor {
+  0%,
+  40% {
+    opacity: 1;
+  }
+
+  60%,
+  100% {
+    opacity: 0;
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -40,6 +67,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  font-family: 'Poppins', 'Courier New', Courier, monospace;
 }
 
 ::-webkit-scrollbar {

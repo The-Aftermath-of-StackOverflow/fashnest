@@ -7,6 +7,7 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/tw-elements/dist/js/**/*.js',
   ],
   theme: {
     extend: {
@@ -48,5 +49,6 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/line-clamp'),
+    require('tw-elements/dist/plugin.cjs'),
   ],
 }

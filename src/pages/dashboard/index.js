@@ -32,7 +32,8 @@ export default function Dashboard() {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
-  if (!session) {
+
+  if (!session || !Object.keys(session.user).length) {
     return {
       redirect: {
         destination: '/',
