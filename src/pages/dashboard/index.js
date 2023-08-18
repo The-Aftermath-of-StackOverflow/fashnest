@@ -1,28 +1,29 @@
-import { useSession, getSession } from "next-auth/react"
-import { getUser } from "@/lib/user"
-import { useRouter } from 'next/router'
-import {useState, useEffect} from 'react'
-import Navbar from "@/components/Navbar"
-import Layout from "@/components/Layout"
+import { useSession, getSession } from 'next-auth/react'
+import { getUser } from '@/lib/user'
+import { MessageProvider } from '@/context/MessageContext'
+import { useState, useEffect } from 'react'
+import Layout from '@/components/Layout'
+import ChatShell from '@/components/ChatShell/ChatShell'
 
 export default function Dashboard() {
-  const {data: session} = useSession()
-  const [validSession, setValidSession] = useState(true);
+  const { data: session } = useSession()
   const [user, setUser] = useState()
 
-  const router = useRouter()
-  // console.log(session)
+  const GetMetadata = async () => {
+    await getUser(session)
+    const sessionUser = session.user
+    setUser(sessionUser)
+  }
 
   useEffect(() => {
-    if(!session) router.push('/')
-    // const user = getUser(session);
-    // setUser(user)
+    GetMetadata()
   }, [])
-  
-    return (
+
+  return (
     <Layout>
-        
-        
+      <MessageProvider>
+        <ChatShell />
+      </MessageProvider>
     </Layout>
   )
 }
@@ -30,7 +31,7 @@ export default function Dashboard() {
 export async function getServerSideProps(context) {
   const session = await getSession(context)
 
-  if (!session) {
+  if (!session || !Object.keys(session.user).length) {
     return {
       redirect: {
         destination: '/',
@@ -40,6 +41,6 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: { session }
+    props: { session },
   }
 }

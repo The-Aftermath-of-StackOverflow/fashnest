@@ -1,16 +1,19 @@
-import Image from 'next/image'
-import SignIn from '@/components/SignIn'
-import fashionImg from '@/assets/fashion.png'
+import AdminForm from '@/components/AdminForm'
 import Layout from '@/components/Layout'
-import { getSession } from 'next-auth/react'
+import AdminImage from '@/assets/admin-img.png'
+import { useSession, getSession } from 'next-auth/react'
+import Image from 'next/image'
 
-export default function Home() {
+export default function index() {
   return (
-    <Layout>
-      <div className="flex gap-4 my-4 justify-between">
-        <SignIn />
-        <div className="w-3/4 grow">
-          <Image src={fashionImg} className="w-full" />
+    <Layout provider="none">
+      <div className="flex">
+        <Image src={AdminImage} className="w-1/2" />
+        <div className="h-min m-auto">
+          <h2 className="mb-8 text-5xl text-white font-bold leading-relaxed font-Prism">
+            Welcome to Admin Portal
+          </h2>
+          <AdminForm />
         </div>
       </div>
     </Layout>
@@ -20,7 +23,7 @@ export default function Home() {
 export async function getServerSideProps(context) {
   const session = await getSession(context)
 
-  if (session && Object.keys(session.user).length) {
+  if (session) {
     if (session.user.email === process.env.ADMIN_EMAIL) {
       return {
         redirect: {

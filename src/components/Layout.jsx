@@ -1,12 +1,10 @@
-import React from 'react'
 import Navbar from './Navbar'
-import ProvidersWrapper from './ProvidersWrapper'
 
-export default function Layout({children, session}) {
+export default function Layout({ children, provider = 'google' }) {
   return (
-    <div className='max-w-screen-xl m-auto h-screen'>
-        <Navbar />
-        {children}
+    <div className="max-w-screen-xl flex flex-col m-auto h-screen">
+      <Navbar provider={provider} />
+      {children}
     </div>
   )
 }
