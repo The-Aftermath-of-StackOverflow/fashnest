@@ -33,7 +33,7 @@ export default function MessageList() {
           new Date(time).toLocaleTimeString()
         console.log(value)
         return (
-          <div className={`flex mb-4  ${type == 'user' ? 'justify-end' : ''}`}>
+          <div key={index} className={`flex mb-4  ${type == 'user' ? 'justify-end' : ''}`}>
             <div className={`flex flex-col`}>
               <div
                 className={`max-w-4xl text-xl rounded text-center p-2 px-4 ${

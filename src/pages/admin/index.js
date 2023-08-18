@@ -3,6 +3,12 @@ import Layout from '@/components/Layout'
 import AdminImage from '@/assets/admin-img.png'
 import { useSession, getSession } from 'next-auth/react'
 import Image from 'next/image'
+import dynamic from "next/dynamic";
+
+const DynamicComponent = dynamic(() => import("@/components/AdminForm"), {
+  ssr: false,
+});
+
 
 export default function index() {
   return (
@@ -13,7 +19,7 @@ export default function index() {
           <h2 className="mb-8 text-5xl text-white font-bold leading-relaxed font-Prism">
             Welcome to Admin Portal
           </h2>
-          <AdminForm />
+          <DynamicComponent />
         </div>
       </div>
     </Layout>

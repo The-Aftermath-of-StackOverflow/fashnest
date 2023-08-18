@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { getSession } from 'next-auth/react'
 import { useEffect } from 'react'
 
-export default function index() {
+export default function Dashboard() {
   useEffect(() => {
     const init = async () => {
       const { Input, initTE } = await import('tw-elements')

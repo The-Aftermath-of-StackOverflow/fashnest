@@ -31,15 +31,6 @@ export default function SignIn() {
                   </div>
                 </button>
               </div>
-              <p class="mt-6 text-white">
-                Are you Admin?{' '}
-                <a
-                  href="/admin"
-                  class="text-light transition duration-150 ease-in-out hover:text-primary-600 focus:text-secondary active:text-primary"
-                >
-                  Login as Admin
-                </a>
-              </p>
 
               <div className="mt-32 space-y-4 text-gray-600 text-center sm:-mb-8">
                 <p className="text-xs">

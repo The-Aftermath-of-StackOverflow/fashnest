@@ -15,7 +15,7 @@ export default function AdminForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(userInfo)
+    
     const res = await signIn('credentials', {
       email: userInfo.email,
       password: userInfo.password,
@@ -43,7 +43,7 @@ export default function AdminForm() {
             }
           />
           <label
-            for="exampleInputEmail2"
+            htmlFor="exampleInputEmail2"
             class="pointer-events-none absolute left-3 -top-1 mb-0 max-w-[90%] origin-[0_0] truncate pt-3 leading-[1.6] text-light transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-light peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none"
           >
             Email address
@@ -62,7 +62,7 @@ export default function AdminForm() {
             }
           />
           <label
-            for="exampleInputPassword2"
+            htmlFor="exampleInputPassword2"
             class="pointer-events-none absolute left-3 -top-1 mb-0 max-w-[90%] origin-[0_0] truncate pt-3 leading-[1.6] text-light transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-light peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none "
           >
             Password
@@ -81,12 +81,15 @@ export default function AdminForm() {
         </div>
         <p class="mt-6 text-center text-white">
           Not an Admin?{' '}
-          <a
+          <Link
             href="/"
-            class="text-light transition duration-150 ease-in-out hover:text-primary-600 focus:text-secondary active:text-primary"
+            passHref={true}
+            legacyBehavior
           >
+            <a className="text-light transition duration-150 ease-in-out hover:text-primary-600 focus:text-secondary active:text-primary">
             Login as User
-          </a>
+            </a>
+          </Link>
         </p>
       </form>
     </div>
