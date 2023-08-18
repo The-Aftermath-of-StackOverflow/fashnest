@@ -1,9 +1,9 @@
 export default function Loader() {
   return (
-    <div class="flex justify-start">
-      <span class="circle animate-loader"></span>
-      <span class="circle animate-loader animation-delay-200"></span>
-      <span class="circle animate-loader animation-delay-400"></span>
+    <div className="flex justify-start">
+      <span className="circle animate-loader"></span>
+      <span className="circle animate-loader animation-delay-200"></span>
+      <span className="circle animate-loader animation-delay-400"></span>
     </div>
   )
 }
