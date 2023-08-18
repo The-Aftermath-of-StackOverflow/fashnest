@@ -1,31 +1,29 @@
 import { useSession, getSession } from 'next-auth/react'
 import { getUser } from '@/lib/user'
-import { useRouter } from 'next/router'
+import { MessageProvider } from '@/context/MessageContext'
 import { useState, useEffect } from 'react'
 import Layout from '@/components/Layout'
 import ChatShell from '@/components/ChatShell/ChatShell'
-
-const secret = process.env.NEXTAUTH_SECRET
 
 export default function Dashboard() {
   const { data: session } = useSession()
   const [user, setUser] = useState()
 
-  const router = useRouter()
-
-  const GetUser = async () => {
-    const user = await getUser(session)
-    setUser(user)
+  const GetMetadata = async () => {
+    await getUser(session)
+    const sessionUser = session.user
+    setUser(sessionUser)
   }
 
   useEffect(() => {
-    GetUser()
-    // GetToken();
+    GetMetadata()
   }, [])
 
   return (
     <Layout>
-      <ChatShell />
+      <MessageProvider>
+        <ChatShell />
+      </MessageProvider>
     </Layout>
   )
 }
