@@ -40,12 +40,11 @@ export async function getServerSideProps(context) {
       },
     }
   }
-
+  console.log(session.jwtToken);
   const cookies = new Cookies(context.req, context.res)
   cookies.set('auth', session.jwtToken, {
 		httpOnly: true,
-    domain: '192.168.20.203:8000',
-    sameSite: 'Lax'
+    sameSite: 'lax'
 	})
 
   console.log(cookies.get('auth'))

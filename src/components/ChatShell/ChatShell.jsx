@@ -1,18 +1,20 @@
 import MessageList from './MessageList'
 import ChatForm from './ChatForm'
 import axios from 'axios'
-import {useContext} from 'react'
-import { getAllMessages, setMessage } from '@/lib/user'
-import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
-import { MessageContext } from '@/context/MessageContext';
-import Cookies from 'cookies'
-const baseURL = 'http://192.168.20.203:8000/chat';
+import {useContext, useEffect, useRef, useState} from 'react'
+import {getAllMessages, setMessage} from '@/lib/user'
+import {useSession} from 'next-auth/react'
+import {MessageContext} from '@/context/MessageContext';
 
 export default function ChatShell() {
   const { chats, setChats, addMessage } = useContext(MessageContext)
   const { data: session } = useSession()
+  const [response, setResponse] = useState('');
   const [loader, setLoader] = useState(false)
+  const responseRef = useRef(response)
+  // const [id, setId] = useState(null);
+  const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
+  console.log(baseURL)
 
   const setInitialMessage = async (message, type) => {
     const previousMessages = await getAllMessages()
@@ -27,8 +29,8 @@ export default function ChatShell() {
     setInitialMessage(initialMessage, 'bot')
   }, [])
 
-  
-  
+
+
   const sendChat = async ()=>{
     const chats = await getAllMessages()
     const messages = chats.reverse().map((chat)=>{
@@ -37,13 +39,28 @@ export default function ChatShell() {
         isUser: chat.type === 'user'
       }
     });
-    // const jwt = Cookies
+    console.log(`${baseURL}/gen`);
     const request = await axios.post(`${baseURL}/gen`, {messages}, {withCredentials: true});
     console.log(request.data);
+    // setId(request.data);
+    await startStream(request.data);
   }
 
-  const startStream = async()=>{
-    const stream = new EventSource(`${baseURL}/stream`)
+  const startStream = async(id)=>{
+    const stream = new EventSource(`${baseURL}/stream/${id}`, {withCredentials: true});
+    stream.onmessage = (data) =>{
+
+      responseRef.current = responseRef.current + data.data;
+      console.log(responseRef.current)
+    }
+
+    stream.onerror = (error)=>{
+      console.log(error);
+      console.log(responseRef.current);
+      console.log('stream closed')
+      stream.close();
+    }
+
   }
 
   return (
