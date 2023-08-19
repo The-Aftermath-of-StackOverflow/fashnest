@@ -13,23 +13,23 @@ export const getUser = async (session) => {
       name: session.user.name,
       image_url: session.user.image,
     })
-    console.log(user)
   }
   return user
 }
 
 export const getAllMessages = async () => {
-  const lastUpdated = localStorage.getItem('lastUpdated')
-    ? new Date(localStorage.getItem('lastUpdated')).getSeconds()
+  const lastUpdated = parseInt(localStorage.getItem('lastUpdated'))
+    ? new Date(parseInt(localStorage.getItem('lastUpdated'))).getTime()
     : 0
-  const latestTime = new Date().getSeconds()
-  if (latestTime - lastUpdated > 7200)
+
+  const latestTime = new Date().getTime()
+  if (latestTime - lastUpdated > 7200 * 1000)
     localStorage.setItem('chats', JSON.stringify({ chats: [] }))
-  console.log(latestTime - lastUpdated)
+
   const messages = localStorage.getItem('chats')
     ? await JSON.parse(localStorage.getItem('chats')).chats
     : []
-  // console.log(messages)
+
   return messages
 }
 

@@ -40,14 +40,13 @@ export async function getServerSideProps(context) {
       },
     }
   }
-  console.log(session.jwtToken);
+
   const cookies = new Cookies(context.req, context.res)
   cookies.set('auth', session.jwtToken, {
-		httpOnly: true,
-    sameSite: 'lax'
-	})
+    httpOnly: true,
+    sameSite: 'lax',
+  })
 
-  console.log(cookies.get('auth'))
   return {
     props: { session },
   }

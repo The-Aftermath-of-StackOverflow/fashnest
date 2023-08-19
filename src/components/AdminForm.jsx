@@ -16,7 +16,7 @@ export default function AdminForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     const res = await signIn('credentials', {
       email: userInfo.email,
       password: userInfo.password,
@@ -72,7 +72,9 @@ export default function AdminForm() {
         <div className="flex">
           <button
             type="submit"
-            className={twMerge("inline-block rounded bg-tertiary px-6 pb-2 pt-2.5 max-w-xs m-auto font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary focus:bg-primary focus:outline-none focus:ring-0 active:bg-primary")}
+            className={twMerge(
+              'inline-block rounded bg-tertiary px-6 pb-2 pt-2.5 max-w-xs m-auto font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary focus:bg-primary focus:outline-none focus:ring-0 active:bg-primary'
+            )}
             data-te-ripple-init
             data-te-ripple-color="light"
             onClick={(e) => handleSubmit(e)}
@@ -82,13 +84,9 @@ export default function AdminForm() {
         </div>
         <p className="mt-6 text-center text-white">
           Not an Admin?{' '}
-          <Link
-            href="/"
-            passHref={true}
-            legacyBehavior
-          >
+          <Link href="/" passHref={true} legacyBehavior>
             <a className="text-light transition duration-150 ease-in-out hover:text-primary-600 focus:text-secondary active:text-primary">
-            Login as User
+              Login as User
             </a>
           </Link>
         </p>

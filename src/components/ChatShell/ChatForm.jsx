@@ -4,7 +4,7 @@ import { setMessage } from '@/lib/user'
 import Image from 'next/image'
 import { useState, useContext } from 'react'
 
-export default function ChatForm({sendChat}) {
+export default function ChatForm({ sendChat }) {
   const [inputValue, setInputValue] = useState('')
   const { addMessage } = useContext(MessageContext)
   const handleSend = async (e) => {

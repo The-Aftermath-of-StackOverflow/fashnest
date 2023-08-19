@@ -53,7 +53,9 @@ export default function Dashboard() {
             <div className="flex">
               <button
                 type="submit"
-                className={twMerge("inline-block rounded bg-secondary px-6 pb-2 pt-2.5 max-w-xs m-auto font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary focus:bg-primary-600 focus:outline-none focus:ring-0 active:bg-primary-700")}
+                className={twMerge(
+                  'inline-block rounded bg-secondary px-6 pb-2 pt-2.5 max-w-xs m-auto font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary focus:bg-primary-600 focus:outline-none focus:ring-0 active:bg-primary-700'
+                )}
                 data-te-ripple-init
                 data-te-ripple-color="light"
                 onClick={(e) => handleSubmit(e)}

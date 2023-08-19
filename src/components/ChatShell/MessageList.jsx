@@ -4,11 +4,8 @@ import { MessageContext } from '@/context/MessageContext'
 import { useState, useEffect, useContext } from 'react'
 import { useSession } from 'next-auth/react'
 
-export default function MessageList({chats, loader}) {
-  
-  const sendChat = async ()=>{
-
-  }
+export default function MessageList({ chats, loader }) {
+  const sendChat = async () => {}
 
   return (
     <div className="flex flex-col-reverse overflow-auto max-h-77 px-5 scroll-smooth">
@@ -21,7 +18,10 @@ export default function MessageList({chats, loader}) {
           new Date(time).toLocaleTimeString()
 
         return (
-          <div key={index} className={`flex mb-4  ${type == 'user' ? 'justify-end' : ''}`}>
+          <div
+            key={index}
+            className={`flex mb-4  ${type == 'user' ? 'justify-end' : ''}`}
+          >
             <div className={`flex flex-col`}>
               <div
                 className={`max-w-4xl text-xl rounded text-center p-2 px-4 ${

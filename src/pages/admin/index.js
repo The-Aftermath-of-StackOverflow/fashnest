@@ -3,12 +3,11 @@ import Layout from '@/components/Layout'
 import AdminImage from '@/assets/admin-img.png'
 import { useSession, getSession } from 'next-auth/react'
 import Image from 'next/image'
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic'
 
-const DynamicComponent = dynamic(() => import("@/components/AdminForm"), {
+const DynamicComponent = dynamic(() => import('@/components/AdminForm'), {
   ssr: false,
-});
-
+})
 
 export default function index() {
   return (

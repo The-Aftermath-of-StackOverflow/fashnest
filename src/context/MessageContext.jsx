@@ -12,14 +12,16 @@ const MessageProvider = ({ children }) => {
     setChats(newChats)
   }
 
-  const addAnimateMessage = ({value}) =>{
-    const cpyChats = [...chats];
-    cpyChats[0].message = cpyChats[0].message + value;
-    setChats(cpyChats);
+  const addAnimateMessage = ({ value }) => {
+    const cpyChats = [...chats]
+    cpyChats[0].message = cpyChats[0].message + value
+    setChats(cpyChats)
   }
 
   return (
-    <MessageContext.Provider value={{ chats, setChats, addMessage, addAnimateMessage }}>
+    <MessageContext.Provider
+      value={{ chats, setChats, addMessage, addAnimateMessage }}
+    >
       {children}
     </MessageContext.Provider>
   )
