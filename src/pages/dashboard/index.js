@@ -4,6 +4,7 @@ import { MessageProvider } from '@/context/MessageContext'
 import { useState, useEffect } from 'react'
 import Layout from '@/components/Layout'
 import ChatShell from '@/components/ChatShell/ChatShell'
+import Cookies from 'cookies'
 
 export default function Dashboard() {
   const { data: session } = useSession()
@@ -40,6 +41,14 @@ export async function getServerSideProps(context) {
     }
   }
 
+  const cookies = new Cookies(context.req, context.res)
+  cookies.set('auth', session.jwtToken, {
+		httpOnly: true,
+    domain: '192.168.20.203:8000',
+    sameSite: 'Lax'
+	})
+
+  console.log(cookies.get('auth'))
   return {
     props: { session },
   }
