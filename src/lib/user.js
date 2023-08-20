@@ -17,7 +17,7 @@ export const getUser = async (session) => {
   return user
 }
 
-export const getAllMessages = async () => {
+export const getAllMessages = () => {
   const lastUpdated = parseInt(localStorage.getItem('lastUpdated'))
     ? new Date(parseInt(localStorage.getItem('lastUpdated'))).getTime()
     : 0
@@ -26,28 +26,22 @@ export const getAllMessages = async () => {
   if (latestTime - lastUpdated > 7200 * 1000)
     localStorage.setItem('chats', JSON.stringify({ chats: [] }))
 
-  const messages = localStorage.getItem('chats')
-    ? await JSON.parse(localStorage.getItem('chats')).chats
-    : []
-
-  return messages
+  return localStorage.getItem('chats')
+      ? JSON.parse(localStorage.getItem('chats')).chats
+      : []
 }
 
-export const setMessage = async (message, type) => {
-  const messages = await getAllMessages()
-  const newMessage = {
-    message: message,
-    type: type,
-    time: new Date().getTime(),
-  }
+export const setMessage = (messageObject) => {
+  const messages = getAllMessages()
   const newMessages = {
-    chats: [newMessage, ...messages],
+    chats: [messageObject, ...messages],
   }
+
   localStorage.setItem('chats', JSON.stringify(newMessages))
-  localStorage.setItem('lastUpdated', new Date().getTime())
+  localStorage.setItem('lastUpdated', new Date().getTime().toString())
 }
 
-export const removeMessage = async () => {
+export const removeMessage = () => {
   localStorage.removeItem('chats')
   localStorage.removeItem('lastUpdated')
 }

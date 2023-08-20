@@ -1,27 +1,26 @@
-import React, { createContext, useState } from 'react'
+import React, {createContext, useState} from 'react'
 
-// Create a context
 const MessageContext = createContext()
 
-// Create a provider component
 const MessageProvider = ({ children }) => {
-  const [chats, setChats] = useState([])
+  const [chats, setChats] = useState([]);
 
   const addMessage = (messageObject) => {
-    const newChats = [messageObject, ...chats]
-    setChats(newChats)
+    setChats(currChats => [messageObject, ...currChats]);
   }
 
   const addAnimateMessage = ({ value }) => {
-    const cpyChats = [...chats]
-    cpyChats[0].message = cpyChats[0].message + value
-    setChats(cpyChats)
+    setChats((chats)=> {
+      const firstChat = chats[0];
+      const allChats = chats.slice(1);
+      firstChat.message = firstChat.message + value;
+      return [firstChat, ...allChats];
+    })
   }
 
   return (
     <MessageContext.Provider
-      value={{ chats, setChats, addMessage, addAnimateMessage }}
-    >
+      value={{ chats, addMessage, addAnimateMessage }}>
       {children}
     </MessageContext.Provider>
   )

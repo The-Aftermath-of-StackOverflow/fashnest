@@ -2,35 +2,28 @@ import MessageList from './MessageList'
 import ChatForm from './ChatForm'
 import axios from 'axios'
 import { useContext, useEffect, useRef, useState } from 'react'
-import { getAllMessages, setMessage } from '@/lib/user'
 import { useSession } from 'next-auth/react'
 import { MessageContext } from '@/context/MessageContext'
 
 export default function ChatShell() {
-  const { chats, setChats, addMessage } = useContext(MessageContext)
+  const { chats, addMessage, addAnimateMessage } = useContext(MessageContext)
   const { data: session } = useSession()
   const [response, setResponse] = useState('')
   const [loader, setLoader] = useState(false)
   const responseRef = useRef(response)
-  // const [id, setId] = useState(null);
   const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL
-  // console.log(baseURL)
-
-  const setInitialMessage = async (message, type) => {
-    const previousMessages = await getAllMessages()
-    if (!previousMessages.length) {
-      await setMessage(message, type)
-    }
-    setChats(await getAllMessages())
-  }
 
   useEffect(() => {
     const initialMessage = `Hi, ${session.user.name} Welcome to FashNet. Please describe your outfit choice.`
-    setInitialMessage(initialMessage, 'bot')
+    addMessage({
+      message: initialMessage,
+      type: 'bot',
+      time: new Date().getTime()
+    });
+
   }, [])
 
   const sendChat = async () => {
-    const chats = await getAllMessages()
     const messages = chats.reverse().map((chat) => {
       return {
         value: chat.message,
@@ -51,16 +44,22 @@ export default function ChatShell() {
   const startStream = async (id) => {
     const stream = new EventSource(`${baseURL}/stream/${id}`, {
       withCredentials: true,
-    })
+    });
+    await addMessage({
+      message: '',
+      type: 'bot',
+      time: new Date().getTime()
+    });
+
+    setLoader(true);
     stream.onmessage = (data) => {
       responseRef.current = responseRef.current + data.data
-      console.log(responseRef.current)
+      addAnimateMessage({value:data.data});
     }
 
     stream.onerror = (error) => {
       console.log(error)
-      console.log(responseRef.current)
-      console.log('stream closed')
+      setLoader(false);
       stream.close()
     }
   }
